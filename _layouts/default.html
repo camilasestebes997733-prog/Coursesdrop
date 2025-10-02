@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="{{ '/' | relative_url }}" class="nav-logo">
+        💰 CoursesDrop
+      </a>
+
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search courses...">
+        <div id="searchResults" class="search-results"></div>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Category Menu -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="{{ '/' | relative_url }}" class="nav-link">🏠 Home</a></li>
+        {% for category in site.main_categories %}
+        <li>
+          <a href="{{ '/categories/' | append: category.slug | relative_url }}" class="nav-link">
+            {{ category.name }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="site-header">
+    <h1 class="site-title">
+      <a href="{{ '/' | relative_url }}" style="color: white; text-decoration: none;">
+        💰 CoursesDrop Blog
+      </a>
+    </h1>
+    <p class="site-description">Exclusive Course Deals & Detailed Program Reviews</p>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; {{ 'now' | date: "%Y" }} CoursesDrop. All rights reserved.</p>
+    <p>Find the best online courses with exclusive discounts.</p>
+  </footer>
+
+  <!-- Search Script -->
+  <script src="{{ '/assets/js/search.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/navbar.js' | relative_url }}"></script>
+</body>
+</html>

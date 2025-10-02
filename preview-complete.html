@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoursesDrop Blog - Complete Preview</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">💰 CoursesDrop</a>
+
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search courses...">
+        <div id="searchResults" class="search-results"></div>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Category Menu -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="/" class="nav-link">🏠 Home</a></li>
+        <li><a href="/categories/business" class="nav-link">Business & Marketing</a></li>
+        <li><a href="/categories/personal-development" class="nav-link">Personal Development</a></li>
+        <li><a href="/categories/finance" class="nav-link">Finance & Trading</a></li>
+        <li><a href="/categories/health" class="nav-link">Health & Wellness</a></li>
+        <li><a href="/categories/content" class="nav-link">Content Creation</a></li>
+        <li><a href="/categories/coaching" class="nav-link">Coaching & Consulting</a></li>
+        <li><a href="/categories/technology" class="nav-link">Technology & AI</a></li>
+        <li><a href="/categories/spiritual" class="nav-link">Spiritual & Energy</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="site-header">
+    <h1 class="site-title">
+      <a href="/" style="color: white; text-decoration: none;">💰 CoursesDrop Blog</a>
+    </h1>
+    <p class="site-description">Exclusive Course Deals & Detailed Program Reviews</p>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <!-- Filter and Sort Controls -->
+    <div class="filter-controls">
+      <div class="filter-header">
+        <h2 class="courses-title">📚 All Courses (171)</h2>
+
+        <div class="filter-actions">
+          <select id="sortSelect" class="filter-select">
+            <option value="newest">🆕 Newest First</option>
+            <option value="discount">💰 Best Discount</option>
+            <option value="title">🔤 Alphabetical</option>
+          </select>
+
+          <select id="categoryFilter" class="filter-select">
+            <option value="all">📂 All Categories</option>
+            <option value="business">Business & Marketing</option>
+            <option value="personal-development">Personal Development</option>
+            <option value="finance">Finance & Trading</option>
+            <option value="health">Health & Wellness</option>
+            <option value="content">Content Creation</option>
+            <option value="coaching">Coaching & Consulting</option>
+            <option value="technology">Technology & AI</option>
+            <option value="spiritual">Spiritual & Energy</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Course List -->
+    <ul class="post-list" id="postList">
+      <li class="post-item" data-title="100k offer system 2.0 - complete program (91% off)" data-date="1727866115" data-categories="business marketing sales">
+        <a class="post-link" href="#">100K Offer System 2.0 - Complete Program (91% OFF)</a>
+        <div class="post-meta"><span>📅 Oct 02, 2025</span></div>
+        <p class="post-excerpt">The most detailed breakdown of the 100K Offer System 2.0 course online. Learn how to create irresistible offers with proven strategies.</p>
+        <span class="price-badge">💰 View Deal</span>
+      </li>
+
+      <li class="post-item" data-title="12-week rapid transformation intensive (94% off)" data-date="1727866114" data-categories="personal-development mindset transformation">
+        <a class="post-link" href="#">12-Week Rapid Transformation Intensive (94% OFF)</a>
+        <div class="post-meta"><span>📅 Oct 02, 2025</span></div>
+        <p class="post-excerpt">Achieve 10x results in 1/10th the time with Dr. Benjamin Hardy's proven psychology-based system used by over 100 million readers.</p>
+        <span class="price-badge">💰 View Deal</span>
+      </li>
+
+      <li class="post-item" data-title="forex mastery course - complete trading system (88% off)" data-date="1727866113" data-categories="finance trading forex">
+        <a class="post-link" href="#">Forex Mastery Course - Complete Trading System (88% OFF)</a>
+        <div class="post-meta"><span>📅 Oct 02, 2025</span></div>
+        <p class="post-excerpt">Master forex trading with proven strategies and risk management techniques from professional traders.</p>
+        <span class="price-badge">💰 View Deal</span>
+      </li>
+
+      <li class="post-item" data-title="youtube growth masterclass (90% off)" data-date="1727866112" data-categories="youtube content video">
+        <a class="post-link" href="#">YouTube Growth Masterclass (90% OFF)</a>
+        <div class="post-meta"><span>📅 Oct 01, 2025</span></div>
+        <p class="post-excerpt">Learn to build your YouTube channel from zero to 1000+ subscribers with proven strategies and content creation techniques.</p>
+        <span class="price-badge">💰 View Deal</span>
+      </li>
+
+      <li class="post-item" data-title="mindfulness meditation certification (85% off)" data-date="1727866111" data-categories="health wellness meditation mindfulness">
+        <a class="post-link" href="#">Mindfulness Meditation Certification (85% OFF)</a>
+        <div class="post-meta"><span>📅 Oct 01, 2025</span></div>
+        <p class="post-excerpt">Become a certified mindfulness meditation instructor with comprehensive training and practice techniques.</p>
+        <span class="price-badge">💰 View Deal</span>
+      </li>
+
+      <li class="post-item" data-title="ai automation for business (92% off)" data-date="1727866110" data-categories="technology ai automation business">
+        <a class="post-link" href="#">AI Automation for Business (92% OFF)</a>
+        <div class="post-meta"><span>📅 Oct 01, 2025</span></div>
+        <p class="post-excerpt">Leverage AI and automation to scale your business operations and increase productivity exponentially.</p>
+        <span class="price-badge">💰 View Deal</span>
+      </li>
+    </ul>
+
+    <div id="noResults" class="no-results" style="display: none;">
+      <p>😕 No courses found with these filters</p>
+      <button class="reset-filters" onclick="resetFilters()">🔄 Reset Filters</button>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 CoursesDrop. All rights reserved.</p>
+    <p>Find the best online courses with exclusive discounts.</p>
+  </footer>
+
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script>
+    // Filter and Sort functionality
+    const postList = document.getElementById('postList');
+    const posts = Array.from(document.querySelectorAll('.post-item'));
+    const noResults = document.getElementById('noResults');
+
+    // Sort handler
+    document.getElementById('sortSelect').addEventListener('change', (e) => {
+      const sortBy = e.target.value;
+      let sortedPosts = [...posts];
+
+      if (sortBy === 'newest') {
+        sortedPosts.sort((a, b) => b.dataset.date - a.dataset.date);
+      } else if (sortBy === 'title') {
+        sortedPosts.sort((a, b) => a.dataset.title.localeCompare(b.dataset.title));
+      } else if (sortBy === 'discount') {
+        sortedPosts.sort((a, b) => {
+          const discountA = parseInt(a.dataset.title.match(/(\d+)%/)?.[1] || 0);
+          const discountB = parseInt(b.dataset.title.match(/(\d+)%/)?.[1] || 0);
+          return discountB - discountA;
+        });
+      }
+
+      sortedPosts.forEach(post => postList.appendChild(post));
+    });
+
+    // Category filter handler
+    document.getElementById('categoryFilter').addEventListener('change', (e) => {
+      const category = e.target.value;
+      let visibleCount = 0;
+
+      posts.forEach(post => {
+        if (category === 'all') {
+          post.style.display = '';
+          visibleCount++;
+        } else {
+          const categoryKeywords = getCategoryKeywords(category);
+          const postCategories = post.dataset.categories;
+
+          const matches = categoryKeywords.some(keyword =>
+            postCategories.includes(keyword.toLowerCase())
+          );
+
+          if (matches) {
+            post.style.display = '';
+            visibleCount++;
+          } else {
+            post.style.display = 'none';
+          }
+        }
+      });
+
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+      postList.style.display = visibleCount === 0 ? 'none' : 'grid';
+    });
+
+    function getCategoryKeywords(slug) {
+      const categories = {
+        'business': ['business', 'marketing', 'sales', 'agency', 'ecommerce', 'shopify'],
+        'personal-development': ['mindset', 'transformation', 'productivity', 'success', 'coaching'],
+        'finance': ['trading', 'forex', 'crypto', 'wealth', 'money', 'financial'],
+        'health': ['fitness', 'health', 'wellness', 'yoga', 'meditation', 'breathwork'],
+        'content': ['youtube', 'video', 'podcast', 'writing', 'storytelling', 'editing'],
+        'coaching': ['coaching', 'consultant', 'therapist', 'certification', 'training'],
+        'technology': ['ai', 'automation', 'tech', 'software', 'programming'],
+        'spiritual': ['spiritual', 'energy', 'healing', 'manifestation', 'psychic']
+      };
+      return categories[slug] || [];
+    }
+
+    function resetFilters() {
+      document.getElementById('sortSelect').value = 'newest';
+      document.getElementById('categoryFilter').value = 'all';
+      posts.forEach(post => post.style.display = '');
+      noResults.style.display = 'none';
+      postList.style.display = 'grid';
+    }
+  </script>
+</body>
+</html>

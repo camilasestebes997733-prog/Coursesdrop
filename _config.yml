@@ -1,0 +1,63 @@
+# Site settings
+title: CoursesDrop Blog
+email: info@coursesdrop.com
+description: >-
+  Discover the best online courses with exclusive discounts.
+  Complete program breakdowns and detailed reviews.
+baseurl: "/Coursesdrop" # the subpath of your site, e.g. /blog
+url: "https://camilasestebes997733-prog.github.io" # the base hostname & protocol for your site
+twitter_username: coursesdrop
+github_username: coursesdrop
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Don't use a theme, we have custom layouts
+# theme: minima
+
+# Permalink structure
+permalink: /:year/:month/:day/:title/
+
+# Pagination
+paginate: 12
+paginate_path: "/page:num/"
+
+# Main Categories for Navigation
+main_categories:
+  - name: "Business & Marketing"
+    slug: business
+    keywords: [business, marketing, sales, agency, ecommerce, shopify]
+  - name: "Personal Development"
+    slug: personal-development
+    keywords: [mindset, transformation, productivity, success, coaching]
+  - name: "Finance & Trading"
+    slug: finance
+    keywords: [trading, forex, crypto, wealth, money, financial]
+  - name: "Health & Wellness"
+    slug: health
+    keywords: [fitness, health, wellness, yoga, meditation, breathwork]
+  - name: "Content Creation"
+    slug: content
+    keywords: [youtube, video, podcast, writing, storytelling, editing]
+  - name: "Coaching & Consulting"
+    slug: coaching
+    keywords: [coaching, consultant, therapist, certification, training]
+  - name: "Technology & AI"
+    slug: technology
+    keywords: [ai, automation, tech, software, programming]
+  - name: "Spiritual & Energy"
+    slug: spiritual
+    keywords: [spiritual, energy, healing, manifestation, psychic]
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

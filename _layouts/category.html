@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+{% assign filtered_posts = "" | split: "" %}
+{% for post in site.posts %}
+  {% assign post_categories = post.categories | join: " " | downcase %}
+  {% assign matched = false %}
+  {% for keyword in page.category_keywords %}
+    {% assign keyword_lower = keyword | downcase %}
+    {% if post_categories contains keyword_lower %}
+      {% assign matched = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  {% if matched %}
+    {% assign filtered_posts = filtered_posts | push: post %}
+  {% endif %}
+{% endfor %}
+
+<div class="category-header">
+  <h1 class="category-title">📚 {{ page.title }}</h1>
+  <p class="category-description">{{ page.description }}</p>
+  <div class="category-count">{{ filtered_posts.size }} courses available</div>
+</div>
+
+<ul class="post-list">
+  {% for post in filtered_posts %}
+    <li class="post-item">
+      <a class="post-link" href="{{ post.url | relative_url }}">
+        {{ post.title | escape }}
+      </a>
+
+      <div class="post-meta">
+        <span>📅 {{ post.date | date: "%b %-d, %Y" }}</span>
+      </div>
+
+      {% if post.description %}
+      <p class="post-excerpt">
+        {{ post.description | strip_html | truncatewords: 30 }}
+      </p>
+      {% endif %}
+
+      <a href="{{ post.url | relative_url }}" class="price-badge">💰 View Deal</a>
+    </li>
+  {% endfor %}
+</ul>
+
+{% if filtered_posts.size == 0 %}
+<div class="no-posts">
+  <p>No courses in this category yet.</p>
+  <a href="{{ "/" | relative_url }}" class="back-link">← Back to Home</a>
+</div>
+{% endif %}

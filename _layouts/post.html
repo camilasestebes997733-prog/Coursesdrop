@@ -1,0 +1,134 @@
+---
+layout: default
+---
+
+<a href="{{ '/' | relative_url }}" class="back-link">← Back to All Courses</a>
+
+<article class="post-content">
+  <h1 class="post-title">{{ page.title }}</h1>
+
+  <div class="post-meta">
+    <span>📅 {{ page.date | date: "%B %d, %Y" }}</span>
+  </div>
+
+  <!-- Course Images Gallery -->
+  <div class="course-images-gallery" id="courseImagesGallery"></div>
+
+  <div class="article-body" style="margin-top: 30px;">
+    {{ content }}
+  </div>
+
+  <div class="cta-box">
+    <h3>🔥 Ready to Get Started?</h3>
+    <p>Get instant access to this course with our exclusive discount!</p>
+    <a href="#" class="cta-button course-cta-button">Get Instant Access Now</a>
+  </div>
+
+  {% if page.tags %}
+    <div class="post-tags">
+      {% for tag in page.tags %}
+        <span class="tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <a href="{{ '/' | relative_url }}" class="back-link" style="margin-top: 2rem; display: inline-flex;">← Back to All Courses</a>
+</article>
+
+<script>
+// Extract course URL and make it clickeable + Load course images
+(function() {
+  const articleBody = document.querySelector('.article-body');
+  if (!articleBody) return;
+
+  // Find all code elements containing coursesdrop URLs
+  const codeElements = articleBody.querySelectorAll('code');
+  let courseUrl = null;
+  let courseSlug = null;
+
+  codeElements.forEach(code => {
+    const text = code.textContent.trim();
+    if (text.includes('coursesdrop.com/course/')) {
+      courseUrl = text;
+
+      // Extract course slug from URL
+      const match = courseUrl.match(/coursesdrop\.com\/course\/([^\/]+)\/?/);
+      if (match) {
+        courseSlug = match[1];
+      }
+
+      // Make the code block clickeable
+      const link = document.createElement('a');
+      link.href = courseUrl;
+      link.className = 'course-url-link';
+      link.textContent = courseUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+
+      code.innerHTML = '';
+      code.appendChild(link);
+    }
+  });
+
+  // Apply URL to all CTA buttons
+  if (courseUrl) {
+    const ctaButtons = document.querySelectorAll('.course-cta-button, .cta-button');
+    ctaButtons.forEach(button => {
+      button.href = courseUrl;
+      button.target = '_blank';
+      button.rel = 'noopener noreferrer';
+    });
+  }
+
+  // Load course images
+  if (courseSlug) {
+    loadCourseImages(courseSlug);
+  }
+})();
+
+// Load and display course images
+function loadCourseImages(courseSlug) {
+  const gallery = document.getElementById('courseImagesGallery');
+  if (!gallery) return;
+
+  const basePath = '{{ "/assets/images/courses/" | relative_url }}' + courseSlug + '/';
+
+  // Try to load conceptual and perfect images (1, 2, or 3)
+  const imageTypes = ['conceptual', 'perfect'];
+  const imageNumbers = [1, 2, 3];
+  const imagesToLoad = [];
+
+  imageTypes.forEach(type => {
+    imageNumbers.forEach(num => {
+      imagesToLoad.push({
+        src: basePath + courseSlug + '-' + type + '-' + num + '.png',
+        alt: courseSlug.replace(/-/g, ' ') + ' ' + type + ' image ' + num,
+        type: type
+      });
+    });
+  });
+
+  // Create gallery HTML
+  let galleryHTML = '<div class="image-grid">';
+  let loadedCount = 0;
+
+  imagesToLoad.forEach((imgData, index) => {
+    const img = new Image();
+    img.onload = function() {
+      if (loadedCount < 2) { // Only show first 2 images (1 conceptual + 1 perfect preferred)
+        const imgElement = document.createElement('div');
+        imgElement.className = 'course-image-item';
+        imgElement.innerHTML = `
+          <img src="${imgData.src}" alt="${imgData.alt}" class="course-image">
+          <span class="image-label">${imgData.type.toUpperCase()}</span>
+        `;
+        gallery.querySelector('.image-grid').appendChild(imgElement);
+        loadedCount++;
+      }
+    };
+    img.src = imgData.src;
+  });
+
+  gallery.innerHTML = galleryHTML + '</div>';
+}
+</script>

@@ -1,0 +1,134 @@
+---
+layout: default
+---
+
+<div class="home-content">
+  {{ content }}
+
+  <!-- Filter and Sort Controls -->
+  <div class="filter-controls">
+    <div class="filter-header">
+      <h2 class="courses-title">📚 All Courses ({{ site.posts.size }})</h2>
+
+      <div class="filter-actions">
+        <select id="sortSelect" class="filter-select">
+          <option value="newest">🆕 Newest First</option>
+          <option value="discount">💰 Best Discount</option>
+          <option value="title">🔤 Alphabetical</option>
+        </select>
+
+        <select id="categoryFilter" class="filter-select">
+          <option value="all">📂 All Categories</option>
+          {% for category in site.main_categories %}
+          <option value="{{ category.slug }}">{{ category.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <ul class="post-list" id="postList">
+    {% for post in site.posts %}
+      <li class="post-item"
+          data-title="{{ post.title | downcase }}"
+          data-date="{{ post.date | date: '%s' }}"
+          data-categories="{{ post.categories | join: ' ' | downcase }}">
+        <a class="post-link" href="{{ post.url | relative_url }}">
+          {{ post.title }}
+        </a>
+        <div class="post-meta">
+          <span>📅 {{ post.date | date: "%b %d, %Y" }}</span>
+        </div>
+        {% if post.description %}
+          <p class="post-excerpt">{{ post.description | truncate: 150 }}</p>
+        {% endif %}
+        <a href="{{ post.url | relative_url }}" class="price-badge">💰 View Deal</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div id="noResults" class="no-results" style="display: none;">
+    <p>😕 No courses found with these filters</p>
+    <button class="reset-filters" onclick="resetFilters()">🔄 Reset Filters</button>
+  </div>
+</div>
+
+<script>
+// Filter and Sort functionality
+const postList = document.getElementById('postList');
+const posts = Array.from(document.querySelectorAll('.post-item'));
+const noResults = document.getElementById('noResults');
+
+// Sort handler
+document.getElementById('sortSelect').addEventListener('change', (e) => {
+  const sortBy = e.target.value;
+  let sortedPosts = [...posts];
+
+  if (sortBy === 'newest') {
+    sortedPosts.sort((a, b) => b.dataset.date - a.dataset.date);
+  } else if (sortBy === 'title') {
+    sortedPosts.sort((a, b) => a.dataset.title.localeCompare(b.dataset.title));
+  } else if (sortBy === 'discount') {
+    // Extract discount from title if available
+    sortedPosts.sort((a, b) => {
+      const discountA = parseInt(a.dataset.title.match(/(\d+)%/)?.[1] || 0);
+      const discountB = parseInt(b.dataset.title.match(/(\d+)%/)?.[1] || 0);
+      return discountB - discountA;
+    });
+  }
+
+  sortedPosts.forEach(post => postList.appendChild(post));
+});
+
+// Category filter handler
+document.getElementById('categoryFilter').addEventListener('change', (e) => {
+  const category = e.target.value;
+  let visibleCount = 0;
+
+  posts.forEach(post => {
+    if (category === 'all') {
+      post.style.display = '';
+      visibleCount++;
+    } else {
+      const categoryKeywords = getCategoryKeywords(category);
+      const postCategories = post.dataset.categories;
+
+      const matches = categoryKeywords.some(keyword =>
+        postCategories.includes(keyword.toLowerCase())
+      );
+
+      if (matches) {
+        post.style.display = '';
+        visibleCount++;
+      } else {
+        post.style.display = 'none';
+      }
+    }
+  });
+
+  noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+  postList.style.display = visibleCount === 0 ? 'none' : 'grid';
+});
+
+function getCategoryKeywords(slug) {
+  const categories = {
+    'business': ['business', 'marketing', 'sales', 'agency', 'ecommerce', 'shopify'],
+    'personal-development': ['mindset', 'transformation', 'productivity', 'success', 'coaching'],
+    'finance': ['trading', 'forex', 'crypto', 'wealth', 'money', 'financial'],
+    'health': ['fitness', 'health', 'wellness', 'yoga', 'meditation', 'breathwork'],
+    'content': ['youtube', 'video', 'podcast', 'writing', 'storytelling', 'editing'],
+    'coaching': ['coaching', 'consultant', 'therapist', 'certification', 'training'],
+    'technology': ['ai', 'automation', 'tech', 'software', 'programming'],
+    'spiritual': ['spiritual', 'energy', 'healing', 'manifestation', 'psychic']
+  };
+  return categories[slug] || [];
+}
+
+function resetFilters() {
+  document.getElementById('sortSelect').value = 'newest';
+  document.getElementById('categoryFilter').value = 'all';
+  posts.forEach(post => post.style.display = '');
+  noResults.style.display = 'none';
+  postList.style.display = 'grid';
+}
+</script>
